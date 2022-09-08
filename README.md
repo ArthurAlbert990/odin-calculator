@@ -1,3 +1,3 @@
 # odin-calculator
 
-Calculator projetor for The Odin Project (TOP) 2022.
+Calculator project for The Odin Project (TOP) 2022.
