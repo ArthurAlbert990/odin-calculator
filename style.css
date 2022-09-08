@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap');
+
+
+/* DESIGN FROM: */
+/* https://www.figma.com/community/file/1041082497681424521 */
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+:root{
+    --light-pageBackground: ;
+    --light-calcBackground: ;
+    --light-buttonColor1: ;
+    --light-buttonColor2: ;
+    --light-buttonColor3: ;
+
+    --dark-pageBackground: ;
+    --dark-calcBackground: ;
+}
