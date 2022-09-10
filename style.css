@@ -23,6 +23,10 @@
     --dark-buttonColor1: #2e2f38;
 }
 
+html,body{
+    width: 100vw;
+    height: 100vh;
+}
 body{
     display: flex;
     flex-direction: row;
@@ -30,23 +34,41 @@ body{
     align-items: center;
 }
 
+/* THEME TOGGLE LIGHT/DARK*/
+.theme-toggle{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 30px;
+}
+
+
 /* CALC */
 .calc-container{
     min-width: 150px;
-    max-width: 25vw;
-    height: auto;
-    aspect-ratio: 21 / 9;
+    width: 296px;
+    /* aspect-ratio: 20 / 9;  */
 
     background-color: var(--light-calcBackground);
-    padding: 10px;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border: none;
+    border-radius: 20px;
 }
 
 .display{
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-
-    font-size: 5vw;
+    font-size: 4em;
+    padding-bottom: 30px;
+}
+.display > .past-operation{
+    opacity: 0.3;
 }
 
 /* GRID for KEYBOARD */
@@ -57,16 +79,27 @@ body{
     /* grid-auto-rows: 50px; ROW SIZE*/
 }
 
-.keyboard-grid > button{
-    width: auto;
-    aspect-ratio: 1 / 1;
-
-}
 
 /* Keyboard style */
-.button{
+button{
     height: fit-content;
-    padding: 12px;
     aspect-ratio: 1 / 1;
+    border: none;
+    border-radius: 12px;
+
+    background-color: var(--light-buttonColor1);
     
+    font-size: 1em;
 }
+
+.horizontal-operator{
+    background-color: var(--light-buttonColor2);
+}
+
+.vertical-operator{
+    background-color: var(--light-buttonColor3);
+    color: white;
+}
+
+
+
