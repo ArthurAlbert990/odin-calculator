@@ -69,6 +69,11 @@ body{
 }
 .display > .past-operation{
     opacity: 0.3;
+    font-size: 2rem;
+}
+
+p{
+    word-wrap: break-word;
 }
 
 /* GRID for KEYBOARD */
@@ -77,6 +82,9 @@ body{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 20px;
     /* grid-auto-rows: 50px; ROW SIZE*/
+
+    justify-items: center;
+    align-items: center;
 }
 
 
@@ -86,9 +94,9 @@ button{
     aspect-ratio: 1 / 1;
     border: none;
     border-radius: 12px;
+    width: 50px;
 
     background-color: var(--light-buttonColor1);
-    
     font-size: 1em;
 }
 
@@ -101,5 +109,18 @@ button{
     color: white;
 }
 
+@media (max-width: 500px){
 
+    .calc-container{
+        height: 100%;
+        width: 100vw;
+        border-radius: 0;
+        padding: 20px;
+    }
+
+    button{
+        width: 60px;
+        font-size: 1.3em;
+    }
+}
 
