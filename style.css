@@ -47,6 +47,7 @@ body{
 .calc-container{
     min-width: 150px;
     width: 296px;
+    height: 592px;
     /* aspect-ratio: 20 / 9;  */
 
     background-color: var(--light-calcBackground);
@@ -147,8 +148,8 @@ input[type=checkbox]{
 label{
     cursor: pointer;
     text-indent: -9999px;
-    width: 50px;
-    height: 25px;
+    width: 45px;
+    height: 22px;
     background-color: var(--light-buttonColor1);
     display: inline-block;
     border-radius: 25px;
@@ -160,8 +161,8 @@ label:after{
     position: absolute;
     top: 2px;
     left: 2px;
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     background-color: var(--light-buttonColor2);
     border-radius: 15px;
     transition: 0.3s;
@@ -172,9 +173,9 @@ input:checked ~ label{
 }
 
 input:checked ~ label:after{
-    transform: translateX(25px);
+    transform: translateX(22px);
 }
 
 label:active:after{
-    width: 25px;
+    width: 20px;
 }
