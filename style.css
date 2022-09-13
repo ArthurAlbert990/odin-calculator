@@ -99,6 +99,8 @@ button{
 
     background-color: var(--light-buttonColor1);
     font-size: 1em;
+
+    cursor: pointer;
 }
 
 .horizontal-operator{
