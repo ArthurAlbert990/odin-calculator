@@ -1,30 +1,10 @@
 console.log('js working')
 
-//CRIAR UMA FUNÇÃO PARA  AJUSTAR O TAMANHO DA FONTE DO DISPLAY
-//  A CADA CARACTERE NOVO DIMINUIR A FONTE PARA NÃO TRANSBORDAR!
-
-//create basic functions for math operations
-function sum(a,b){
-    return a+b;
-}
-function subtract(a,b){
-    return a-b;
-}
-function divide(a,b){
-    return a/b;
-}
-function multiply(a,b){
-    return a*b;
-}
-function power(a,b){
-    return a**b; // or Math.pow(a,b)
-}
-function sqrt(a){
-    return Math.sqrt(a);
-}
-
 //operators array
-const operatorsArray = ['C','+/-','÷','/','×','-','+','='];
+const operatorsArray = ['C','+/-','÷','/','×','-','+','=','%'];
+
+//global variable to identify if it will start a new operation on display
+let newEquation = false;
 
 //function to print key on display text
 const display = document.querySelector('.current-operation p');
@@ -42,6 +22,12 @@ function updateDisplay(e){
         pastOpDisplay.innerText = '';
         console.log('Clear calculator.')
         return e;
+    }    //if starting new equation
+
+    if(newEquation===true){
+        console.log('new eq')
+        display.innerText='';
+        pastOpDisplay.innerText = ''
     }
 
     
@@ -51,9 +37,13 @@ function updateDisplay(e){
             //second operator pressed, makes calc on "memory", calc on pastOpDisplay line  
             pastOpDisplay.innerText += display.innerText+'=';
 
-            //chamar função de cálculo
-            operate(pastOpDisplay.innerText)
-            //exibir resultado
+            if (pastOpDisplay.includes('+/-')){
+                let invertedPolarityEq = invertPolarity(pastOpDisplay.innerText)
+                operate(invertedPolarityEq);
+            } else{
+                //chamar função de cálculo
+                operate(pastOpDisplay.innerText)
+            }
 
             return (e);
         }
@@ -62,11 +52,11 @@ function updateDisplay(e){
         display.innerText='0';
 
     } else if (e.innerText == '='){
-        console.log('REALIZAR OPERAÇÃO')
         pastOpDisplay.innerText += display.innerText+'=';
-        display.innerText= operate(pastOpDisplay.innerText)
+        display.innerText= preprocessEq(pastOpDisplay.innerText)
 
     } else {
+        newEquation = false;
         display.innerText += e.innerText; //append new key e.innerText
     }
 
@@ -80,21 +70,36 @@ function updateDisplayFont(e){
         }
 }
 
+
+//special function to +/- button, inverts the polarity of a number/eq.
+function invertPolarity(str){
+    if (str.includes('+')){
+        return str.replace('+','-')
+    } else {
+        return str.replace('-','+')
+    }
+}
+
+//function to convert str to right equation format, it calls operate()
+function preprocessEq(str){
+    let equation = str;
+
+    equation = equation.replace('=','')
+                    .replace('÷','/')
+                    .replace('×','*')
+
+    return operate(equation);
+}
+
 //function to identify operator and call operator function
 function operate(str){
     let equation = str;
-        //PAREI AQUI:
-        //PAREI AQUI:
-        //PAREI AQUI:
-    equation.replace('/[+/-÷/×-+=]/g','');
+    equation.replace('=','')
     console.log(`Operate: ${equation}`);
-
-    return ;
+    newEquation = true;
+    //JS can evaluate a str equation using the Function constructor:
+    return new Function('return '+equation)();
 }
-
-//function to identify if it will start a new operation on display
-
-
 
 //function to process keypress
 function keyPress(e){
@@ -110,4 +115,11 @@ keys.forEach((element) =>{
     element.addEventListener('click',function(){updateDisplay(element)})
     element.addEventListener('click',function(){updateDisplayFont(element)})
 });
+
+
+//
+// OBS: OS BOTÕES: % e  +/- ainda não estão funcionando.
+// finalizar função para +/-
+// criar função para %
+
 
