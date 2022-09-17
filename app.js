@@ -107,6 +107,15 @@ function keyPress(e){
     return this.e;
 }
 
+//function to change between themes
+
+function setTheme(){
+    console.log('switch theme')
+    const root = document.documentElement;
+    const newTheme = root.className === 'dark' ? 'light' : 'dark';
+    root.className = newTheme;
+}
+
 //bind events for calculator keyboard on click
 const keys = document.querySelectorAll('.key');
 
@@ -115,6 +124,12 @@ keys.forEach((element) =>{
     element.addEventListener('click',function(){updateDisplay(element)})
     element.addEventListener('click',function(){updateDisplayFont(element)})
 });
+
+//bind theme switch
+const themeSwitch = document.querySelector('#switch');
+const root = document.documentElement;
+
+themeSwitch.addEventListener('click', function(){setTheme()})
 
 
 //

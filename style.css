@@ -11,17 +11,28 @@
     font-family: 'Work Sans','Sans-serif';
 }
 
-:root{
-    --light-pageBackground: black;
-    --light-calcBackground: #f1f2f3;
-    --light-buttonColor1: white;
-    --light-buttonColor2: #d2d3da;
-    --light-buttonColor3: #4b5efc;
 
-    --dark-pageBackground: black;
-    --dark-calcBackground: #17171c;
-    --dark-buttonColor1: #2e2f38;
+:root.dark{
+    --pageBackground: #f1f2f3;
+    --calcBackground: #17171c;
+    --buttonColor1: #2e2f38;
+    --buttonColor2: #aeafb5;
+    --buttonColor3: #4b5efc;
+    --textColor: white;
+    --verticalTextColor: white;
 }
+
+:root.light{
+    --pageBackground: #17171c;
+    --calcBackground: #f1f2f3;
+    --buttonColor1: white;
+    --buttonColor2: #d2d3da;
+    --buttonColor3: #4b5efc;
+    --textColor: black;
+    --verticalTextColor: white;
+}
+
+
 
 html,body{
     width: 100vw;
@@ -50,7 +61,7 @@ body{
     height: 592px;
     /* aspect-ratio: 20 / 9;  */
 
-    background-color: var(--light-calcBackground);
+    background-color: var(--calcBackground);
     padding: 20px;
 
     display: flex;
@@ -67,6 +78,7 @@ body{
     align-items: flex-end;
     font-size: 4em;
     padding-bottom: 30px;
+    color: var(--textColor)
 }
 .display > .past-operation{
     opacity: 0.3;
@@ -86,6 +98,8 @@ p{
 
     justify-items: center;
     align-items: center;
+
+    color: var(--textColor);
 }
 
 
@@ -97,19 +111,20 @@ button{
     border-radius: 12px;
     width: 50px;
 
-    background-color: var(--light-buttonColor1);
+    background-color: var(--buttonColor1);
     font-size: 1em;
+    color: var(--textColor);
 
     cursor: pointer;
 }
 
 .horizontal-operator{
-    background-color: var(--light-buttonColor2);
+    background-color: var(--buttonColor2);
 }
 
 .vertical-operator{
-    background-color: var(--light-buttonColor3);
-    color: white;
+    background-color: var(--buttonColor3);
+    color: var(--verticalTextColor);
 }
 
 @media (max-width: 500px){
@@ -152,7 +167,7 @@ label{
     text-indent: -9999px;
     width: 45px;
     height: 22px;
-    background-color: var(--light-buttonColor1);
+    background-color: var(--buttonColor1);
     display: inline-block;
     border-radius: 25px;
     position: relative;
@@ -165,13 +180,13 @@ label:after{
     left: 2px;
     width: 18px;
     height: 18px;
-    background-color: var(--light-buttonColor2);
+    background-color: var(--buttonColor2);
     border-radius: 15px;
     transition: 0.3s;
 }
 
 input:checked ~ label{
-    background-color: var(--light-buttonColor3);
+    background-color: var(--buttonColor3);
 }
 
 input:checked ~ label:after{
