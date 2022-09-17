@@ -37,11 +37,13 @@ function updateDisplay(e){
             //second operator pressed, makes calc on "memory", calc on pastOpDisplay line  
             pastOpDisplay.innerText += display.innerText+'=';
 
-            if (pastOpDisplay.includes('+/-')){
+            if (pastOpDisplay.innerText.includes('+/-')){
+                console.log('includes +/-')
                 let invertedPolarityEq = invertPolarity(pastOpDisplay.innerText)
                 operate(invertedPolarityEq);
             } else{
                 //chamar função de cálculo
+                console.log('operating:')
                 operate(pastOpDisplay.innerText)
             }
 
@@ -64,21 +66,26 @@ function updateDisplay(e){
 }
 
 function updateDisplayFont(e){
-        //adjust display text size
-        if (display.innerText.length > 6){
-            display.style.fontSize = '0.5em';
-        }
+    //adjust display text size
+    if (display.innerText.length > 6){
+         display.style.fontSize = '0.5em';
+    }
 }
 
 
 //special function to +/- button, inverts the polarity of a number/eq.
 function invertPolarity(str){
-    if (str.includes('+')){
-        return str.replace('+','-')
-    } else {
-        return str.replace('-','+')
+    console.log('invert polarity function');
+    let invertedPol = str;
+    
+    if(invertedPol.includes('+/-')){
+        invertedPol = invertedPol.replace('+/-','-');
+        console.log(`InvertedPol: ${invertedPol}`)
     }
+
+    return (invertedPol);
 }
+
 
 //function to convert str to right equation format, it calls operate()
 function preprocessEq(str){
@@ -87,23 +94,32 @@ function preprocessEq(str){
     equation = equation.replace('=','')
                     .replace('÷','/')
                     .replace('×','*')
+                    .replace(',','.')
 
     return operate(equation);
 }
 
 //function to identify operator and call operator function
 function operate(str){
-    let equation = str;
-    equation.replace('=','')
+    //special +- operator:
+    let equation =''
+    if(str.includes('+/-')){
+        console.log('special operator, invert polarity');
+        equation = invertPolarity(str);
+        console.log(`Equation: ${equation}`)
+    } else{
+        equation = str;
+    }
+
     console.log(`Operate: ${equation}`);
     newEquation = true;
     //JS can evaluate a str equation using the Function constructor:
     return new Function('return '+equation)();
 }
 
-//function to process keypress
+//function to check keypress
 function keyPress(e){
-    console.log(e.innerText)
+    //console.log(e.innerText)
     return this.e;
 }
 
@@ -134,7 +150,7 @@ themeSwitch.addEventListener('click', function(){setTheme()})
 
 //
 // OBS: OS BOTÕES: % e  +/- ainda não estão funcionando.
-// finalizar função para +/-
+// finalizar função para +/-[OK]
 // criar função para %
 
 
